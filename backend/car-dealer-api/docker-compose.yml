@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: support
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hallo32K
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - springnet
+
+#  app:
+#    build: .
+#    container_name: spring-app
+#    depends_on:
+#      - postgres
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydb
+#      SPRING_DATASOURCE_USERNAME: myuser
+#      SPRING_DATASOURCE_PASSWORD: mypass
+#      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+#      SPRING_FLYWAY_ENABLED: true
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - springnet
+
+volumes:
+  postgres_data:
+
+networks:
+  springnet:
