@@ -1,91 +1,163 @@
-Sistema de Vendas de Veículos 
-Sistema web para cadastro e gestão de vendas de veículos. Projeto desenvolvido com tecnologias modernas tanto no backend quanto no frontend , incluindo Java Spring Boot , React + Vite , e banco de dados rodando via Docker . 
+# 🚗 Sistema de Vendas de Veículos
 
-Tecnologias Utilizadas 
-Backend 
-    Java 21
-    Spring Boot 
-    Spring Data JPA 
-    Spring Web 
-    Lombok 
-    PostgreSQL
-    Docker Compose  para subir o banco de dados localmente
-Frontend 
-    React.js 
-    TypeScript 
-    Vite 
-    Tailwind CSS 
-    ShadCN UI Components 
-    
-Estrutura do Projeto:
- 
+Sistema web completo para cadastro e gestão de vendas de veículos, desenvolvido com tecnologias modernas e arquitetura full-stack.
+
+## 📋 Sobre o Projeto
+
+Esta aplicação permite o gerenciamento completo de uma concessionária, incluindo:
+- 👥 Cadastro de clientes e vendedores
+- 🚙 Gestão de veículos em estoque
+- 💰 Controle de vendas com sistema de parcelamento
+- 📊 Relatórios e dashboard de vendas
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+- **Java 21** - Linguagem principal
+- **Spring Boot** - Framework principal
+- **Spring Data JPA** - Persistência de dados
+- **Spring Web** - APIs REST
+- **Lombok** - Redução de código boilerplate
+- **PostgreSQL** - Banco de dados
+- **Docker Compose** - Containerização do banco
+
+### Frontend
+- **React.js** - Biblioteca JavaScript
+- **TypeScript** - Tipagem estática
+- **Vite** - Build tool e dev server
+- **Tailwind CSS** - Framework CSS
+- **ShadCN UI** - Componentes de interface
+
+## 📁 Estrutura do Projeto
+
+```
 meu-projeto/
-├── backend/          # Código-fonte do backend em Java Spring Boot
-│   └── docker-compose.yml     # Arquivo para iniciar o banco de dados
-├── frontend/         # Código-fonte do frontend em React + Vite
-└── README.md         # Este arquivo
- 
-🔧 Como Iniciar o Projeto 
-Passo 1: Clonar o repositório 
+├── backend/                    # Código-fonte do backend
+│   ├── src/
+│   ├── docker-compose.yml      # Configuração do banco de dados
+│   └── build.gradle
+├── frontend/                   # Código-fonte do frontend  
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.ts
+└── README.md
+```
 
-bash:
-git clone https://github.com/seu-usuario/seu-repositorio.git 
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- ☕ Java 21+
+- 🐳 Docker e Docker Compose
+- 📦 Node.js 18+
+- 🔧 Gradle (ou usar o wrapper incluído)
+
+### 1️⃣ Clone o Repositório
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
- 
- 
-Passo 2: Iniciar o Banco de Dados com Docker 
-Na raiz da pasta backend, execute: 
-bash
+```
+
+### 2️⃣ Inicialize o Banco de Dados
+```bash
 cd backend
-docker-compose up -d / Isso iniciará o serviço do banco de dados PostgreSQL.
-     
-Verifique se os containers estão rodando: 
-bash
+docker-compose up -d
+```
+
+Verifique se o container está rodando:
+```bash
 docker ps
- 
-Passo 3: Iniciar o Backend (Java) 
-Acesse a pasta do backend: 
-bash
+```
+
+### 3️⃣ Execute o Backend
+**Opção A - Via IDE:**
+1. Importe como projeto Gradle
+2. Execute `CarDealerApiApplication.java`
+
+**Opção B - Via Terminal:**
+```bash
 cd backend
+./gradlew bootRun
+```
 
-Com IDE: 
-Abra o projeto como projeto Maven.
-Execute a classe principal (CarDealerApiApplication.java).
-     
-Com linha de comando: 
-bash
-./mvnw spring-boot:run
-O backend será acessível em http://localhost:8080. 
-     
-Passo 4: Iniciar o Frontend (React + Node.js) 
+✅ Backend disponível em: `http://localhost:8080`
 
-Abra outro terminal e acesse a pasta do frontend: 
-bash
+### 4️⃣ Execute o Frontend
+Abra um novo terminal:
+```bash
 cd frontend
- 
-Instale as dependências: 
-bash
 npm install
- 
-Inicie o servidor de desenvolvimento: 
-bash
 npm run dev
-O frontend será acessível em http://localhost:3000. 
-     
+```
 
-Testando a Aplicação 
-Após iniciar todos os serviços: 
-Acesse o sistema via navegador: http://localhost:3000 
-Registre clientes, veículos e vendedores
-Realize o cadastro de vendas com parcelamento e preço personalizado
-     
+✅ Frontend disponível em: `http://localhost:3000`
 
-Observações Importantes 
-Certifique-se de ter o Docker  e o Docker Compose  instalados antes de iniciar o backend.
-Verifique a URL do backend no frontend (geralmente em src/services/api.ts ou similar).
-Se estiver usando variáveis de ambiente, configure-as corretamente no arquivo .env do frontend (VITE_API_URL=http://localhost:8080/api).
-O arquivo docker-compose.yml deve conter a configuração correta do banco de dados usado (ex: PostgreSQL ou MySQL).
-     
+## 🎯 Testando a Aplicação
 
-Suporte 
-Se tiver dúvidas ou encontrar problemas, abra uma issue no repositório ou entre em contato! 
+1. **Acesse** `http://localhost:3000`
+2. **Cadastre** clientes, veículos e vendedores
+3. **Registre** vendas com parcelamento personalizado
+4. **Visualize** relatórios e dashboard
+
+## ⚙️ Configurações
+
+### Variáveis de Ambiente (Frontend)
+Crie um arquivo `.env` na pasta `frontend`:
+```env
+VITE_API_URL=http://localhost:8080/api
+```
+
+### Banco de Dados
+O PostgreSQL será configurado automaticamente via Docker com:
+- **Host:** localhost:5432
+- **Database:** car_dealer
+- **User/Password:** Definidos no `docker-compose.yml`
+
+## 🐛 Solução de Problemas
+
+### Backend não conecta ao banco
+```bash
+# Verifique se o container está rodando
+docker ps
+
+# Reinicie o banco se necessário
+docker-compose down
+docker-compose up -d
+```
+
+### Frontend não encontra a API
+- Verifique se o backend está rodando na porta 8080
+- Confirme a variável `VITE_API_URL` no arquivo `.env`
+
+### Erro de CORS
+- O backend já possui configuração CORS para desenvolvimento
+- Verifique se as URLs estão corretas
+
+## 📚 Recursos Adicionais
+
+- 📖 [Documentação Spring Boot](https://spring.io/projects/spring-boot)
+- ⚛️ [Documentação React](https://react.dev/)
+- 🎨 [Tailwind CSS](https://tailwindcss.com/)
+- 🧩 [ShadCN UI](https://ui.shadcn.com/)
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 💬 Suporte
+
+Encontrou algum problema? 
+
+- 🐛 [Abra uma issue](https://github.com/seu-usuario/seu-repositorio/issues)
+- 📧 Entre em contato: seu-email@exemplo.com
+
+---
+
+⭐ **Gostou do projeto? Deixe uma estrela!**
