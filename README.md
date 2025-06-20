@@ -147,16 +147,6 @@ docker-compose up -d
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 💬 Suporte
-
-Encontrou algum problema? 
-
-- 🐛 [Abra uma issue](https://github.com/seu-usuario/seu-repositorio/issues)
-- 📧 Entre em contato: seu-email@exemplo.com
 
 ---
 
